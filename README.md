@@ -1,1 +1,2 @@
-# FULL-STACK
+### MongoDB => PostgreSQL
+### Tailwind => SCSS
