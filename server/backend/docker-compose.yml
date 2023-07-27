@@ -1,0 +1,57 @@
+version: '3.5'
+
+services:
+  db:
+    container_name: postgres_full_stack
+    image: postgres:14
+    environment:
+      POSTGRES_USER: fullstacker
+      POSTGRES_PASSWORD: qwertyui
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/var/www/backend/docker-volumes/postgres
+    ports:
+      - 5432:5432
+    networks:
+      - backend
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: pgadmin123
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - pgadmin:/var/www/backend/docker-volumes/pgadmin
+    ports:
+      - 5050:80
+    networks:
+      - backend
+    restart: unless-stopped
+
+  app:
+    build: .
+    container_name: my-nest-app
+    environment:
+      POSTGRES_HOST: postgres_full_stack
+      POSTGRES_PORT: 5432
+      POSTGRES_USERNAME: fullstacker
+      POSTGRES_PASSWORD: qwertyui
+      POSTGRES_DATABASE: postgres_full_stack
+    ports:
+      - "3000:3000"
+    networks:
+      - backend
+    depends_on:
+      - db
+    restart: unless-stopped
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:
