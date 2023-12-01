@@ -1,6 +1,5 @@
 // ========================== next ===========================
 import Image from "next/image";
-import Link from "next/link";
 
 //========================== images ===========================
 import GoodDeedsImage from "@/public/images/GOOD-DEEDS-LOGO.png";
@@ -11,7 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FC } from "react";
 
 //========================== schemas =========================== 
-import LoginFormSchema from "./utils/schemas/loginValidation";
+import SigninFormSchema from "./utils/schemas/signInValidation";
 
 //========================== interfaces =========================== 
 interface ISignInFormData {
@@ -33,7 +32,7 @@ const SignIn: FC<ISignInProps> = ({
 
   const { register, handleSubmit, formState: { errors, isValid } } = useForm<ISignInFormData>({
     mode: 'onChange',
-    resolver: yupResolver(LoginFormSchema)
+    resolver: yupResolver(SigninFormSchema)
   });
 
   const onSubmit: SubmitHandler<ISignInFormData> = (data: ISignInFormData) => {
@@ -49,6 +48,7 @@ const SignIn: FC<ISignInProps> = ({
       <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-xl rounded px-8 pt-8 pb-10 mb-4 w-full max-w-sm relative">
         <Image className="w-28 mx-auto" src={GoodDeedsImage} alt="Good Deeds Image" />
         <h1 className="text-2xl font-bold text-center mb-6">Sign In</h1>
+        
         <div className="mb-8 relative">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
             E-mail
@@ -93,9 +93,7 @@ const SignIn: FC<ISignInProps> = ({
         </div>
         <div className="text-sm text-center">
           Don't have an account?{' '}
-          <Link href="/signup" onClick={handleRedirectToSignUp}>
-            <span className="text-blue-500 hover:underline">Sign Up</span>
-          </Link>
+          <span className="text-blue-500 hover:underline cursor-pointer" onClick={handleRedirectToSignUp}>Sign Up</span>
         </div>
         {fetchErrors !== undefined && (
           <span

@@ -5,7 +5,7 @@ export const formLogInInput = {
 }
 
 // ========================== initial state ==========================
-const initialState = {
+export const initialState = {
   auth: {
     token: "",
     errors: {
