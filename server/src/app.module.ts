@@ -1,19 +1,27 @@
-// ============================ Path ====================================
-import * as path from "path"
-
 // ============================ Nest ====================================
 import { Module } from "@nestjs/common";
-import { ScheduleModule } from "@nestjs/schedule";
+
+// ============================ Modules ==================================
+import { AuthModule } from "./app/auth/auth.module";
+import { DeedsModule } from "./app/deeds/deeds.module";
+
+// ============================ TypeORM ==================================
 import { TypeOrmModule } from "@nestjs/typeorm";
 
-// ============================ Config ==================================
+// ============================ Configs ==================================
 import { ConfigModule } from "@nestjs/config";
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import databaseConfig from "./config/database.config";
+
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    AuthModule, 
+    DeedsModule,
+    // ConfigModule.forRoot({
+    //   isGlobal: true
+    // }),
+    TypeOrmModule.forRoot(databaseConfig),
+  ],
 })
-export class AppModule {}
+
+export class AppModule{};

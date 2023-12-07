@@ -1,45 +1,40 @@
 version: "3.8"
 services:
-  client:
-    depends_on:
-      - server
-    build:
-      context: ./client
-    image: client:latest
-    ports:
-      - 8000:3000
-    networks:
-      diary:
-    hostname: "client.local"
-    container_name: "client"
-    command: "npm start"
 
   server:
     depends_on:
       - db
-    build: 
+    build:
       context: ./server
     image: server:latest
     ports:
       - 5000:5000
     networks:
-      diary:
+      diary_task:
     hostname: "server.local"
-    container_name: "server"
+    container_name: "server_diary"
     command: "npm run start:dev"
 
   db:
-    image: mongo:latest
+    image: postgres:latest
     restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: null
-      MONGO_INITDB_ROOT_PASSWORD: null
+    env_file:
+      - ./server/.env
     ports:
-      - 27017:27017
+      - 5432:5432
     networks:
-      diary:
-    hostname: "db_mongo.local"
-    container_name: "db_mongo"
+      diary_task:
+    hostname: "db_postgres.local"
+    container_name: "db_postgres_diary"
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    env_file:
+      - ./server/.env
+    ports:
+      - 3002:80
+    networks:
+      diary_task:
 
 networks:
-  diary:
+  diary_task:

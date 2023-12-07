@@ -9,3 +9,7 @@
 
 # dist
 */dist
+
+# next.js
+/.next/
+/out/
