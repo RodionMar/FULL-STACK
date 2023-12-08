@@ -5,6 +5,7 @@ import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConne
 // ========================== Entities ==========================
 import { AuthEntities } from "src/app/auth/entities/auth.entity";
 import { DeedsEntities } from "src/app/deeds/entities/deeds.entity";
+import { UserEntities } from "src/app/users/entities/user.entity";
 
 
 const databaseConfig: PostgresConnectionOptions = {
@@ -16,7 +17,8 @@ const databaseConfig: PostgresConnectionOptions = {
   database: process.env.POSTGRES_DB,
   entities: [
     AuthEntities,
-    DeedsEntities
+    DeedsEntities,
+    UserEntities
   ],
   synchronize: true
 };

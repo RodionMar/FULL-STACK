@@ -4,6 +4,7 @@ import { Module } from "@nestjs/common";
 // ============================ Modules ==================================
 import { AuthModule } from "./app/auth/auth.module";
 import { DeedsModule } from "./app/deeds/deeds.module";
+import { UsersModule } from './app/users/users.module';
 
 // ============================ TypeORM ==================================
 import { TypeOrmModule } from "@nestjs/typeorm";
@@ -21,6 +22,7 @@ import databaseConfig from "./config/database.config";
     //   isGlobal: true
     // }),
     TypeOrmModule.forRoot(databaseConfig),
+    UsersModule,
   ],
 })
 
