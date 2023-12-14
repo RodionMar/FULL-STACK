@@ -1,24 +1,28 @@
 // ============================ Nest ====================================
-import { Module } from "@nestjs/common";
-import { PassportModule } from '@nestjs/passport';
+import { Module, forwardRef } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
 
-// ============================ Configs ====================================
+// ============================ Controllers and Services ====================================
 import { AuthService } from "./auth.service";
 import { AuthController } from "./auth.controller";
 
-// ====================== Entities ============================
-import { AuthEntities } from "./entities/auth.entity";
-
 // ====================== Modules ============================
-import { UsersModule } from "../users/users.module";
+import { SecurityModule } from '../security/security.module';
 
-// ====================== Strategies ============================
-import { LocalStrategy } from "./strategies/local.strategy";
+// ========================== Repositories ==============================
+import { UsersRepository } from "../users/repos/users.repository";
+
+// ============================ Entities ====================================
+import { UserEntities } from "../users/entities/user.entity";
 
 
 @Module({
-  imports: [UsersModule, PassportModule],
+  imports: [
+    TypeOrmModule.forFeature([UserEntities]),
+    forwardRef(() => SecurityModule),
+  ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy],
+  providers: [AuthService, UsersRepository],
+  exports: [AuthService]
 })
 export class AuthModule {};

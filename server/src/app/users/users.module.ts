@@ -1,5 +1,5 @@
 // ============================ Nest ====================================
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 // ============================ Configs ====================================
@@ -9,11 +9,20 @@ import { UserController } from './users.controller';
 // ============================ Entities ====================================
 import { UserEntities } from './entities/user.entity';
 
+// ============================ Repositories ====================================
+import { UsersRepository } from './repos/users.repository';
+
+// ============================ Modules ====================================
+import { SecurityModule } from '../security/security.module';
+
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserEntities])],
+  imports: [
+    TypeOrmModule.forFeature([UserEntities]),
+    forwardRef(() => SecurityModule),
+  ],
   controllers: [UserController],
-  providers: [UsersService],
+  providers: [UsersService, UsersRepository],
   exports: [UsersService]
 })
 export class UsersModule {}

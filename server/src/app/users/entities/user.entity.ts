@@ -1,11 +1,12 @@
 // ====================== TypeORM ============================
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+
+// ====================== Entities ============================
+import { UUIDEntity } from "src/shared/entities/uuid.entity";
 
 
 @Entity()
-export class UserEntities {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class UserEntities extends UUIDEntity {
 
   @Column()
   firstName: string;
@@ -14,14 +15,11 @@ export class UserEntities {
   lastName: string;
 
   @Column()
+  tag: string;
+
+  @Column()
   email: string;
 
   @Column()
   password: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 };

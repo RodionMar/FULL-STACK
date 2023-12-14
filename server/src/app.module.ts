@@ -18,9 +18,9 @@ import databaseConfig from "./config/database.config";
   imports: [
     AuthModule, 
     DeedsModule,
-    // ConfigModule.forRoot({
-    //   isGlobal: true
-    // }),
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
     TypeOrmModule.forRoot(databaseConfig),
     UsersModule,
   ],

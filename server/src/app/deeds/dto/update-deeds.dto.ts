@@ -1,6 +1,6 @@
 // ============================ Nest ====================================
 import { PartialType } from "@nestjs/swagger";
 
-import { CreateAuthDto } from "src/app/auth/dto/create-auth.dto";
+import { SignUpDto } from "src/app/auth/dto/sign-up.dto";
 
-export class UpdateDeedsDto extends PartialType(CreateAuthDto) {};
+export class UpdateDeedsDto extends PartialType(SignUpDto) {};

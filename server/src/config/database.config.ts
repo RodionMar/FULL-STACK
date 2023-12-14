@@ -3,7 +3,6 @@ import "dotenv/config";
 import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions";
 
 // ========================== Entities ==========================
-import { AuthEntities } from "src/app/auth/entities/auth.entity";
 import { DeedsEntities } from "src/app/deeds/entities/deeds.entity";
 import { UserEntities } from "src/app/users/entities/user.entity";
 
@@ -16,8 +15,6 @@ const databaseConfig: PostgresConnectionOptions = {
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
   entities: [
-    AuthEntities,
-    DeedsEntities,
     UserEntities
   ],
   synchronize: true
