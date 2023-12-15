@@ -1,28 +1,19 @@
-// ============================ Nest ====================================
-import { Controller, Request, Post, UseGuards, Get, ValidationPipe, UsePipes, Body } from "@nestjs/common";
-
-// ============================ Services ====================================
+import { Controller } from "@nestjs/common/decorators/core";
+import { Body, Post } from "@nestjs/common/decorators/http";
+import { UsersEntity } from "../users/entities/user.entity";
 import { AuthService } from "./auth.service";
-
-// ============================ DTO ====================================
 import { SignUpDto } from "./dto/sign-up.dto";
-import { SignInDto } from "./dto/sign-in.dto";
-import { TokenDto } from "../security/dtos/token.dto";
-
+import { UserSessionDto } from "../users/dto/user-session.dto";
 
 @Controller("auth")
 export class AuthController {
-  constructor(private readonly authService: AuthService) {};
+  constructor(
+    private readonly authService: AuthService
+  ){};
 
-  @Post("/signUp")
-  @UsePipes(new ValidationPipe())
-  async signUp(@Body() createUserDto: SignUpDto) {
-    return await this.authService.signUp(createUserDto);
-  };
-
-  @Post("/login")
-  @UsePipes(new ValidationPipe())
-  async logIn(@Body() userSignIn: SignInDto): Promise<TokenDto> {
-    return await this.authService.login(userSignIn);
+  @Post("signUp")
+  async signUp(@Body() data: UserSessionDto) {
+    return this.authService.signUp(data);
   }
-};
+
+}

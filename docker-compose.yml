@@ -1,19 +1,19 @@
 version: "3.8"
 services:
 
-  server:
-    depends_on:
-      - db
-    build:
-      context: ./server
-    image: server:latest
-    ports:
-      - 5000:5000
-    networks:
-      diary_task:
-    hostname: "server.local"
-    container_name: "server_diary"
-    command: "npm run start:dev"
+  # server:
+  #   depends_on:
+  #     - db
+  #   build:
+  #     context: ./server
+  #   image: server:latest
+  #   ports:
+  #     - 5000:5000
+  #   networks:
+  #     diary_task:
+  #   hostname: "server.local"
+  #   container_name: "server_diary"
+  #   command: "npm run start:dev"
 
   db:
     image: postgres:latest

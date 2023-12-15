@@ -1,4 +1,8 @@
+// ================================ TypeORM ================================
 import { DataSource } from "typeorm";
-import databaseConfig from "./database.config";
 
-export default new DataSource(databaseConfig);
+// ================================ Config ================================
+import dataBaseConfig from "./database.config";
+
+
+export default new DataSource(dataBaseConfig);

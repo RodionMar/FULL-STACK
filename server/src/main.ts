@@ -1,14 +1,15 @@
-// ====================== Nest ============================
+// ================================ Nest ================================
 import { NestFactory } from "@nestjs/core";
 
-// ====================== Modules ============================
+// ================================ Modules ================================
 import { AppModule } from "./app.module";
 
 
 async function App() {
-  const app = await NestFactory.create(AppModule);
   const port = process.env.PORT || 5000;
-  await app.listen(port, () => console.log(`Server started from ${port}`));
+  const app = await NestFactory.create(AppModule);
+  await app.listen(port, () => {
+    console.log(`App listen at ${port}`);
+  });
 };
-
 App();

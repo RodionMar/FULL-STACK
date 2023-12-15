@@ -1,22 +1,14 @@
 // ============================ typeorm =================================
-import { Column, PrimaryGeneratedColumn } from "typeorm";
+import { CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 
 export abstract class UUIDEntity {
   @PrimaryGeneratedColumn()
-  id!: string;
+  id: string;
 
-  @Column({
-    name: "createdAt",
-    type: "timestamp",
-    default: () => "CURRENT_TIMESTAMP(6)",
-  })
-  createdAt!: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 
-  @Column({
-    name: "updatedAt",
-    default: () => "CURRENT_TIMESTAMP(6)",
-    onUpdate: "CURRENT_TIMESTAMP(6)",
-  })
-  updatedAt!: Date;
-}
+  @UpdateDateColumn()
+  updatedAt: Date;
+};
