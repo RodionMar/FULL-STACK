@@ -12,12 +12,13 @@ import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
 
 import { UsersEntity } from "../users/entities/user.entity";
-import { UserService } from "../users/users.service";
 import { UsersModule } from "../users/users.module";
+import { SecurityModule } from "../security/security.module";
 
 
 @Module({
   imports: [
+    SecurityModule ,
     UsersModule,
     TypeOrmModule.forFeature([UsersEntity])
   ],

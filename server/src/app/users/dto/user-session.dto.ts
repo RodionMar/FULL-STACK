@@ -1,6 +1,9 @@
 // ============================ DTO =================================
 import { UUIDDto } from "src/shared/dtos/uuid.dto";
 
+// ============================ Validation =================================
+import { IsString } from "class-validator";
+
 
 export class UserSessionDto extends UUIDDto {
   firstName: string;

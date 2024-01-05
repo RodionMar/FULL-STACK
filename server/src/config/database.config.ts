@@ -3,7 +3,10 @@ import "dotenv/config";
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
 // ================================ Entities ================================
-import { UsersEntity } from "src/app/users/entities/user.entity";
+import { UsersEntity } from "../app/users/entities/user.entity";
+
+// ================================ Migrations ================================
+import { $npmConfigName1704458287701 } from "../../migrations/1704458287701-$npm_config_name";
 
 
 const dataBaseConfig: PostgresConnectionOptions = {
@@ -14,6 +17,9 @@ const dataBaseConfig: PostgresConnectionOptions = {
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
   entities: [UsersEntity],
-  synchronize: true
+  synchronize: false,
+  migrations:[
+    $npmConfigName1704458287701
+  ]
 };
 export default dataBaseConfig;

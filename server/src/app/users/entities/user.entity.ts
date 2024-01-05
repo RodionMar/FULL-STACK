@@ -1,5 +1,5 @@
 // ================================ Entities ================================
-import { UUIDEntity } from "src/shared/entities/uuid.entity";
+import { UUIDEntity } from "../../../shared/entities/uuid.entity";
 
 // ================================ TypeORM ================================
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
